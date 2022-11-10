@@ -30,3 +30,12 @@ h6 {
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
+
+a,
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: rgb(225, 233, 163);
+}

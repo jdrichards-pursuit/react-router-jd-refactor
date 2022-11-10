@@ -8,7 +8,7 @@ const iconMap = {
 export const Pet = ({ kind, pet }) => {
   const icon = iconMap[kind];
   return (
-    <article key={pet.id}>
+    <article>
       <h3>
         {icon} {pet.name}
       </h3>
