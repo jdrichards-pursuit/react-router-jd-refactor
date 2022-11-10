@@ -1,23 +1,28 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate
+} from 'react-router-dom';
 
 /*
   Components
 */
-import Nav from "./components/common/Nav";
-import Footer from "./components/common/Footer";
-import Home from "./components/home/Home";
-import StaffList from "./components/staff/StaffList";
-import PetsList from "./components/pets/PetsList";
+import Nav from './components/common/Nav';
+import Footer from './components/common/Footer';
+import Home from './components/home/Home';
+import StaffList from './components/staff/StaffList';
+import PetsList from './components/pets/PetsList';
 
 /*
   Data
   ---------------
   Note: Normally this data would be pulled from an API. It is not necessary, however, for this application.
 */
-import { employeeData } from "./data/employees.js";
-import { ownerData } from "./data/owners";
-import { petData } from "./data/pets";
+import { employeeData } from './data/employees.js';
+import { ownerData } from './data/owners';
+import { petData } from './data/pets';
 
 function App() {
   const [employees] = useState(employeeData);
@@ -34,25 +39,16 @@ function App() {
             element={<Home employees={employees} owners={owners} pets={pets} />}
           />
           <Route path="/staff" element={<StaffList employees={employees} />} />
-          {/* <Route path="/pets" element={<PetsList pets={pets} kind={"all"}/>}>
-            <Route
-              path="cats"
-              element={<PetsList pets={pets} kind={"cats"} />}
-            />
-            <Route
-              path="dogs"
-              element={<PetsList pets={pets} kind={"dogs"} />}
-            />
-          </Route> */}
-          <Route path="/pets" element={<PetsList pets={pets} kind={"all"}/>} />
+
+          <Route path="/pets" element={<Navigate to="/pets/cats" />} />
           <Route
-              path="/pets/cats"
-              element={<PetsList pets={pets} kind={"cats"} />}
-            />
-            <Route
-              path="/pets/dogs"
-              element={<PetsList pets={pets} kind={"dogs"} />}
-            />
+            path="/pets/cats"
+            element={<PetsList pets={pets} kind={'cats'} />}
+          />
+          <Route
+            path="/pets/dogs"
+            element={<PetsList pets={pets} kind={'dogs'} />}
+          />
         </Routes>
         <Footer />
       </Router>
